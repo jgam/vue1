@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+    <script>
+        var div = document.querySelector('#app');
+        var viewModel = {};
+        
+        //objects property is redefined
+        Object.defineProperty(viewModel, 'str', {
+            //when accessing the property
+            get: function(){
+                console.log('access');
+            },
+
+            //when setting the property
+            set: function(newValue){
+                console.log('set', newValue);
+                div.innerHTML = newValue;
+            }
+        });
+
+    </script>
+</body>
+</html>
