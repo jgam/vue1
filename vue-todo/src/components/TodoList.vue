@@ -24,15 +24,12 @@ export default {
         todoItems: Array
     },
     methods:{
-        toggleComplete: function(todoItem){
-            todoItem.completed = !todoItem.completed;
-            localStorage.removeItem(todoItem.item);
-            localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
-
+        toggleComplete: function(todoItem, index){
+            this.$emit('onToggleComplete', todoItem, index)
         },
         removeTodo: function(todoItem, index){
-            localStorage.removeItem(todoItem);
-            this.todoItems.splice(index,1);
+            this.$emit('removeItem', todoItem, index)
+
         }
     },
     
