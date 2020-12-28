@@ -20,10 +20,8 @@
 
 <script>
 export default {
-    data:function(){
-        return {
-            todoItems: []
-        }
+    props:{
+        todoItems: Array
     },
     methods:{
         toggleComplete: function(todoItem){
@@ -37,22 +35,13 @@ export default {
             this.todoItems.splice(index,1);
         }
     },
-    created: function(){
-        if(localStorage.length > 0){
-            for(var i = 0; i < localStorage.length; i++){
-                if(localStorage.key(i) !== 'loglevel:webpack-dev-server'){
-                    // this.todoItems.push(localStorage.key(i))
-
-                    this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-                }
-            }
-        }
-    }
+    
 
 }
 </script>
 
 <style scoped>
+
 ul{
     list-style-type:none;
     padding-left: 0px;

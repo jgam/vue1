@@ -1,37 +1,51 @@
 <template>
   <div id="app">
     <todo-header></todo-header>
-    <todo-input></todo-input>
-    <todo-list></todo-list>
+    <TodoInput v-on:addTodoItem="addOneItem"></TodoInput>
+    <TodoList v-bind:todoItems="todoItems"></TodoList>
     <todo-footer></todo-footer>
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
 import TodoHeader from './components/TodoHeader.vue';
 import TodoInput from './components/TodoInput.vue';
 import TodoList from './components/TodoList.vue';
 import TodoFooter from './components/TodoFooter.vue';
 
-var my_cmp = {
-  template: '<div>my component</div>'
-};
-
-new Vue({
-  el: '',
-  components: {
-    'my-cmp': my_cmp
-  }
-})
 
 export default {
-  components:{
+  data: function(){
+    return {
+      todoItems: []
+    }
+  },
+  methods:{
+    addOneItem: function(todoItem){
+      var obj= {completed: false, item: todoItem};
+      // console.log(this.newTodoItem)
+      localStorage.setItem(todoItem, JSON.stringify(obj));
+      this.todoItems.push(obj);
+                
+    }
+  },
+  created: function(){
+        if(localStorage.length > 0){
+            for(var i = 0; i < localStorage.length; i++){
+                if(localStorage.key(i) !== 'loglevel:webpack-dev-server'){
+                    // this.todoItems.push(localStorage.key(i))
+
+                    this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+                }
+            }
+        }
+    },
+    components:{
     'TodoHeader':TodoHeader,
     'TodoInput': TodoInput,
     'TodoList': TodoList,
     'TodoFooter': TodoFooter
-  }
+  },
 
 }
 </script>
