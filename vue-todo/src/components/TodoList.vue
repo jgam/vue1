@@ -29,20 +29,8 @@ export default {
             toggleComplete: 'toggleToComplete'
 
         }),
-        // toggleComplete: function(todoItem, index){
-        //     // this.$emit('onToggleComplete', todoItem, index)
-        //     console.log('toggle completed clicked', index)
-        //     this.$store.commit('toggleToComplete', {todoItem, index})
-        // },
-        // removeTodo: function(todoItem, index){
-        //     // this.$emit('removeItem', todoItem, index)
-        //     this.$store.commit('removeOneItem', {todoItem, index});
-        // }
     },
     computed: {
-        // todoItems(){
-        //     return this.$store.getters.storedTodoItems;
-        // }
         ...mapGetters(['storedTodoItems'])
     }
     
