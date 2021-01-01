@@ -3,7 +3,7 @@
   <div class="inputBox shadow">
       <input type="text" placeholder="Todo!" v-model="newTodoItem" v-on:keyup.enter="addTodo">
       <!-- <button v-on:click="addTodo">add</button> -->
-      <span class="addContainer" v-on:click="addTodo">
+      <span class="addContainer" @click="addTodo">
           <i class="fas fa-plus addBtn"></i>
       </span>
       <Modal v-if="showModal" @close="showModal = false">
